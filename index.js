@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const { forEach, includes } = require("lodash");
+
 inquirer
   .prompt([
     {
@@ -78,18 +78,18 @@ inquirer
 populateReadme = (response) => {
   console.log(response);
   const title = `# Project Title: ${response.title}\n`;
-  const description = `## Description: \n ${response.description}\n\n`;
+  const description = `## Description: \n${response.description}\n\n`;
   let tblContent = `\n\n## Table of Contents:\n`;
-  const motivation = `### -Motivation: \n${response.motivation}\n`;
-  const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n`;
-  const problemSolved = `### -Problems Solved: \n${response.problemSolved}\n`;
+  const motivation = `### -Motivation: \n${response.motivation}\n\n`;
+  const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n\n`;
+  const problemSolved = `### -Problems Solved: \n${response.problemSolved}\n\n`;
   const learn = `### -What was Learned: \n${response.learn}\n\n`;
   const install = `## Installation Instructions: <a name="install"></a> \n${response.install}\n\n`;
   const usage = `## How to Use: <a name="usage"></a> \n ${response.usage}\n\n`;
   let license = `## License: <a name="license"></a> \n -This project is covered under the ${response.license} license.\n\n`;
   const contribution = `## Contribution Guidelines: <a name="contribution"></a> \n ${response.contribution}\n\n`;
   const test = `## How To Test: <a name="test"></a> \n ${response.test}\n\n`;
-  let questions = `## Questions: <a name="username"></a> \n`;
+  let questions = `## Questions: <a name="username"></a> \n\n`;
   const username = `For questions see more at: \n [${response.username}](https://github.com/${response.username})\n\n`;
   const email = `Or email me at: ${response.email}`;
   //if dont add license is chosen, set to null length string
