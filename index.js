@@ -21,29 +21,25 @@ inquirer
     {
       type: "input",
       message: "How do I use this project? (Enter usage instructions)",
+      name: "usageInstructions",
+    },
+    {
+      type: "list",
+      message: "Please choose a license.",
+      name: "license",
+    },
+    {
+      type: "input",
+      message: "What are the contribution guidelines?",
       name: "description",
     },
     {
       type: "input",
-      message: "Please describe your project.",
-      name: "description",
-    },
-    {
-      type: "input",
-      message: "Please describe your project.",
-      name: "description",
-    },
-    {
-      type: "input",
-      message: "Please describe your project.",
+      message: "What are the test instructions?",
       name: "description",
     },
   ])
-  .then((response) =>
-    response.confirm === response.password
-      ? console.log("Success!")
-      : console.log("You forgot your password already?!")
-  );
+  .then((response) => console.log(response));
 
 createReadme = () => {
   fs.appendFile("newREADME.md", "Trial", function (err) {
