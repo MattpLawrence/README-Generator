@@ -69,17 +69,17 @@ populateReadme = (response) => {
   console.log(response.test);
   const title = `# Project Title: ${response.title}`;
   const description = `## Description: \n -${response.description} `;
-  const motivation = `###  -${response.motivation}`;
-  const whyBuild = `###  -${response.whyBuild}`;
-  const problemSolved = `###   -${response.problemSolved}`;
-  const learn = `###   -${response.learn}`;
+  const motivation = `###-Motivation: \n${response.motivation}`;
+  const whyBuild = `###-Why This Was Built: \n${response.whyBuild}`;
+  const problemSolved = `###-Problems Solved: \n${response.problemSolved}`;
+  const learn = `###-What was Learned: \n${response.learn}`;
   const install = `## Installation Instructions: \n${response.install}`;
   const usage = `## How to Use: \n ${response.usage}`;
   const license = `## License: \n ${response.license}`;
   const contribution = `## Contribution Guidelines: \n ${response.contribution}`;
   const test = `## How To Test: \n ${response.test}`;
 
-  let fullPopulate = `${title} \n\n ${description} \n\n ${motivation} \n${whyBuild}\n${problemSolved}\n${learn}\n\n ${install} \n\n ${usage} \n\n ${license} \n\n ${contribution} \n\n ${test}`;
+  let fullPopulate = `${title}\n\n${description}\n\n${motivation}\n${whyBuild}\n${problemSolved}\n${learn}\n\n${install}\n\n${usage}\n\n${license}\n\n${contribution} \n\n${test}`;
   createReadme(fullPopulate);
 };
 
