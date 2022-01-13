@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const { forEach } = require("lodash");
+const { forEach, includes } = require("lodash");
 inquirer
   .prompt([
     {
@@ -69,27 +69,64 @@ populateReadme = (response) => {
   console.log(response);
   const title = `# Project Title: ${response.title}\n\n`;
   const description = `## Description: \n -${response.description}\n\n`;
-  const motivation = `###-Motivation: \n${response.motivation}\n`;
-  const whyBuild = `###-Why This Was Built: \n${response.whyBuild}\n`;
-  const problemSolved = `###-Problems Solved: \n${response.problemSolved}\n`;
-  const learn = `###-What was Learned: \n${response.learn}\n\n`;
+  const motivation = `### -Motivation: \n${response.motivation}\n`;
+  const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n`;
+  const problemSolved = `### -Problems Solved: \n${response.problemSolved}\n`;
+  const learn = `### -What was Learned: \n${response.learn}\n\n`;
   const install = `## Installation Instructions: \n${response.install}\n\n`;
   const usage = `## How to Use: \n ${response.usage}\n\n`;
   const license = `## License: \n ${response.license}\n\n`;
   const contribution = `## Contribution Guidelines: \n ${response.contribution}\n\n`;
   const test = `## How To Test: \n ${response.test}`;
 
-  //loop to check if everything was entered, and exclude blank entries.
   let fullPopulate = ``;
-  let attrList = [];
-  for (let property in response) {
-    if (response[property]) {
-      attrList.push(response[property]);
-      console.log(attrList);
-    }
+
+  if (response.title) {
+    fullPopulate += title;
   }
-  //set array to loop through
-  // const attrList = [
+  if (response.description) {
+    fullPopulate += description;
+  }
+  if (response.motivation) {
+    fullPopulate += motivation;
+  }
+  if (response.whyBuild) {
+    fullPopulate += whyBuild;
+  }
+  if (response.problemSolved) {
+    fullPopulate += problemSolved;
+  }
+  if (response.learn) {
+    fullPopulate += learn;
+  }
+  if (response.install) {
+    fullPopulate += install;
+  }
+  if (response.usage) {
+    fullPopulate += usage;
+  }
+  if (response.license) {
+    fullPopulate += license;
+  }
+  if (response.contribution) {
+    fullPopulate += contribution;
+  }
+  if (response.test) {
+    fullPopulate += test;
+  }
+
+  //loop to check if everything was entered, and exclude blank entries.
+  // let fullPopulate = ``;
+  // let attrList = [];
+  // for (let property in response) {
+  //   if (response[property]) {
+  //     attrList.push(property);
+  //     console.log(attrList);
+
+  //   }
+  // }
+  // //set array to loop through
+  // const fullAttrList = [
   //   title,
   //   description,
   //   motivation,
@@ -102,12 +139,12 @@ populateReadme = (response) => {
   //   contribution,
   //   test,
   // ];
-  for (let i = 0; i < attrList.length; i++) {
-    console.log(attrList[i]);
-    // if (response.attrList[i]) {
-    //   console.log("yes");
-    // }
-  }
+  // for (let i = 0; i < fullAttrList.length; i++) {
+  //   console.log(fullAttrList[i]);
+  //   if (attrList.includes(fullAttrList[i])) {
+  //     console.log("includes" + fullAttrList[i]);
+  //   }
+  // }
 
   // let fullPopulate = `${title}\n\n${description}\n\n${motivation}\n${whyBuild}\n${problemSolved}\n${learn}\n\n${install}\n\n${usage}\n\n${license}\n\n${contribution} \n\n${test}`;
   createReadme(fullPopulate);
