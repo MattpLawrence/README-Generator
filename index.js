@@ -14,6 +14,26 @@ inquirer
     },
     {
       type: "input",
+      message: "What was you motivation to do this project?",
+      name: "motivation",
+    },
+    {
+      type: "input",
+      message: "Why did you build this project?",
+      name: "whyBuild",
+    },
+    {
+      type: "input",
+      message: "What problems did you solve in this project?",
+      name: "problemSolved",
+    },
+    {
+      type: "input",
+      message: "What did you learn while doing this project?",
+      name: "learn",
+    },
+    {
+      type: "input",
       message:
         "How do I install this project? (Enter installation instructions)",
       name: "install",
@@ -49,16 +69,23 @@ populateReadme = (response) => {
   console.log(response.test);
   const title = `# Project Title: ${response.title}`;
   const description = `## Description: \n -${response.description} `;
-  const install = `## Installation Instructions: ${response.install}`;
-  const
+  const motivation = `###  -${response.motivation}`;
+  const whyBuild = `###  -${response.whyBuild}`;
+  const problemSolved = `###   -${response.problemSolved}`;
+  const learn = `###   -${response.learn}`;
+  const install = `## Installation Instructions: \n${response.install}`;
+  const usage = `## How to Use: \n ${response.usage}`;
+  const license = `## License: \n ${response.license}`;
+  const contribution = `## Contribution Guidelines: \n ${response.contribution}`;
+  const test = `## How To Test: \n ${response.test}`;
 
-  let fullPopulate = `${title} \n\n ${description}`;
+  let fullPopulate = `${title} \n\n ${description} \n\n ${motivation} \n${whyBuild}\n${problemSolved}\n${learn}\n\n ${install} \n\n ${usage} \n\n ${license} \n\n ${contribution} \n\n ${test}`;
   createReadme(fullPopulate);
 };
 
 createReadme = (fullPopulate) => {
   fs.appendFile("newREADME.md", fullPopulate, function (err) {
     if (err) throw err;
-    console.log("saved");
+    console.log("Saved");
   });
 };
