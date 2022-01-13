@@ -86,6 +86,16 @@ populateReadme = (response) => {
   //set string to add content to readme
   let fullPopulate = ``;
   //loop through to add only the filled out answers to the readme
+  if (response.license === "MIT") {
+    fullPopulate += "![MIT-Tag](https://shields.io/badge/license-MIT-green)";
+  }
+  if (response.license === "Apache") {
+    fullPopulate +=
+      "![Apache-Tag](https://shields.io/badge/license-Apache-blue)";
+  }
+  if (response.license === "GPL") {
+    fullPopulate += "![GPL-Tag](https://shields.io/badge/license-GPL-blue)";
+  }
   if (response.title) {
     fullPopulate += title;
   }
