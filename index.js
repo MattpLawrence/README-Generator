@@ -67,28 +67,49 @@ inquirer
 
 populateReadme = (response) => {
   console.log(response);
-  console.log(response.test);
-  const title = `# Project Title: ${response.title}`;
-  const description = `## Description: \n -${response.description} `;
-  const motivation = `###-Motivation: \n${response.motivation}`;
-  const whyBuild = `###-Why This Was Built: \n${response.whyBuild}`;
-  const problemSolved = `###-Problems Solved: \n${response.problemSolved}`;
-  const learn = `###-What was Learned: \n${response.learn}`;
-  const install = `## Installation Instructions: \n${response.install}`;
-  const usage = `## How to Use: \n ${response.usage}`;
-  const license = `## License: \n ${response.license}`;
-  const contribution = `## Contribution Guidelines: \n ${response.contribution}`;
+  const title = `# Project Title: ${response.title}\n\n`;
+  const description = `## Description: \n -${response.description}\n\n`;
+  const motivation = `###-Motivation: \n${response.motivation}\n`;
+  const whyBuild = `###-Why This Was Built: \n${response.whyBuild}\n`;
+  const problemSolved = `###-Problems Solved: \n${response.problemSolved}\n`;
+  const learn = `###-What was Learned: \n${response.learn}\n\n`;
+  const install = `## Installation Instructions: \n${response.install}\n\n`;
+  const usage = `## How to Use: \n ${response.usage}\n\n`;
+  const license = `## License: \n ${response.license}\n\n`;
+  const contribution = `## Contribution Guidelines: \n ${response.contribution}\n\n`;
   const test = `## How To Test: \n ${response.test}`;
 
   //loop to check if everything was entered, and exclude blank entries.
+  let fullPopulate = ``;
+  let attrList = [];
   for (let property in response) {
-    console.log(response[property]);
     if (response[property]) {
-      console.log("yes" + response[property]);
+      attrList.push(response[property]);
+      console.log(attrList);
     }
   }
+  //set array to loop through
+  // const attrList = [
+  //   title,
+  //   description,
+  //   motivation,
+  //   whyBuild,
+  //   problemSolved,
+  //   learn,
+  //   install,
+  //   usage,
+  //   license,
+  //   contribution,
+  //   test,
+  // ];
+  for (let i = 0; i < attrList.length; i++) {
+    console.log(attrList[i]);
+    // if (response.attrList[i]) {
+    //   console.log("yes");
+    // }
+  }
 
-  let fullPopulate = `${title}\n\n${description}\n\n${motivation}\n${whyBuild}\n${problemSolved}\n${learn}\n\n${install}\n\n${usage}\n\n${license}\n\n${contribution} \n\n${test}`;
+  // let fullPopulate = `${title}\n\n${description}\n\n${motivation}\n${whyBuild}\n${problemSolved}\n${learn}\n\n${install}\n\n${usage}\n\n${license}\n\n${contribution} \n\n${test}`;
   createReadme(fullPopulate);
 };
 
