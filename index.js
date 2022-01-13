@@ -60,6 +60,11 @@ inquirer
       message: "What are the test instructions?",
       name: "test",
     },
+    {
+      type: "input",
+      message: "What is your GitHub username",
+      name: "username",
+    },
   ])
   .then((response) => {
     populateReadme(response);
@@ -78,27 +83,36 @@ populateReadme = (response) => {
   let license = `## License: \n ${response.license}\n\n`;
   const contribution = `## Contribution Guidelines: \n ${response.contribution}\n\n`;
   const test = `## How To Test: \n ${response.test}`;
+  const username = `## Questions: \n For questions see more at: \n [${username}](https://github.com/${username})`;
   //if dont add license is chosen, set to null length string
   if (response.license === "Dont Add License") {
     console.log("dont add license");
     license = "";
   }
+  //check to see what license was chosen, then add badge
+  let setBadge = () => {
+    if (response.license === "MIT") {
+      fullPopulate +=
+        "![MIT-Tag](https://shields.io/badge/license-MIT-green) \n";
+    }
+    if (response.license === "Apache") {
+      fullPopulate +=
+        "![Apache-Tag](https://shields.io/badge/license-Apache-blue) \n";
+    }
+    if (response.license === "GPL") {
+      fullPopulate +=
+        "![GPL-Tag](https://shields.io/badge/license-GPL-blue) \n";
+    }
+  };
+
   //set string to add content to readme
   let fullPopulate = ``;
   //loop through to add only the filled out answers to the readme
-  if (response.license === "MIT") {
-    fullPopulate += "![MIT-Tag](https://shields.io/badge/license-MIT-green)";
-  }
-  if (response.license === "Apache") {
-    fullPopulate +=
-      "![Apache-Tag](https://shields.io/badge/license-Apache-blue)";
-  }
-  if (response.license === "GPL") {
-    fullPopulate += "![GPL-Tag](https://shields.io/badge/license-GPL-blue)";
-  }
+
   if (response.title) {
     fullPopulate += title;
   }
+  setBadge();
   if (response.description) {
     fullPopulate += description;
   }
