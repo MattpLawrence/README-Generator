@@ -65,6 +65,11 @@ inquirer
       message: "What is your GitHub username",
       name: "username",
     },
+    {
+      type: "input",
+      message: "What is your Email address",
+      name: "email",
+    },
   ])
   .then((response) => {
     populateReadme(response);
@@ -74,16 +79,18 @@ populateReadme = (response) => {
   console.log(response);
   const title = `# Project Title: ${response.title}\n`;
   const description = `## Description: \n ${response.description}\n\n`;
-  const motivation = `### -Motivation: \n${response.motivation}\n`;
+  let tblContent = `\n\n## Table of Contents:\n`;
+  const motivation = `### -Motivation: <a name="motivation"></a> \n${response.motivation}\n`;
   const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n`;
   const problemSolved = `### -Problems Solved: \n${response.problemSolved}\n`;
   const learn = `### -What was Learned: \n${response.learn}\n\n`;
   const install = `## Installation Instructions: \n${response.install}\n\n`;
   const usage = `## How to Use: \n ${response.usage}\n\n`;
-  let license = `## License: \n ${response.license}\n\n`;
+  let license = `## License: \n -This project is covered under the ${response.license} license.\n\n`;
   const contribution = `## Contribution Guidelines: \n ${response.contribution}\n\n`;
   const test = `## How To Test: \n ${response.test}\n\n`;
-  const username = `## Questions: \n For questions see more at: \n [${response.username}](https://github.com/${response.username})`;
+  const username = `## Questions: \n For questions see more at: \n [${response.username}](https://github.com/${response.username})\n\n`;
+  const email = `Or email me at: ${response.email}`;
   //if dont add license is chosen, set to null length string
   if (response.license === "Dont Add License") {
     console.log("dont add license");
@@ -108,7 +115,7 @@ populateReadme = (response) => {
   //set string to add content to readme
   let fullPopulate = ``;
   //loop through to add only the filled out answers to the readme
-
+  let i = 1;
   if (response.title) {
     fullPopulate += title;
   }
@@ -118,6 +125,9 @@ populateReadme = (response) => {
   }
   if (response.motivation) {
     fullPopulate += motivation;
+    tblContent += `${i}. [title](#motivation) \n`;
+    console.log(tblContent);
+    i++;
   }
   if (response.whyBuild) {
     fullPopulate += whyBuild;
@@ -143,10 +153,14 @@ populateReadme = (response) => {
   if (response.test) {
     fullPopulate += test;
   }
-  if (response.test) {
+  if (response.username) {
     fullPopulate += username;
   }
-
+  if (response.email) {
+    fullPopulate += email;
+  }
+  console.log(tblContent);
+  fullPopulate += tblContent;
   //loop to check if everything was entered, and exclude blank entries.
   // let fullPopulate = ``;
   // let attrList = [];
