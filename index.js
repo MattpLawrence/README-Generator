@@ -4,18 +4,39 @@ inquirer
   .prompt([
     {
       type: "input",
-      message: "What is your user name?",
-      name: "username",
+      message: "What is the title of this project?",
+      name: "title",
     },
     {
-      type: "password",
-      message: "What is your password?",
-      name: "password",
+      type: "input",
+      message: "Please describe this project. (Enter project description)",
+      name: "description",
     },
     {
-      type: "password",
-      message: "Re-enter password to confirm:",
-      name: "confirm",
+      type: "input",
+      message:
+        "How do I install this project? (Enter installation instructions)",
+      name: "installInstructions",
+    },
+    {
+      type: "input",
+      message: "How do I use this project? (Enter usage instructions)",
+      name: "description",
+    },
+    {
+      type: "input",
+      message: "Please describe your project.",
+      name: "description",
+    },
+    {
+      type: "input",
+      message: "Please describe your project.",
+      name: "description",
+    },
+    {
+      type: "input",
+      message: "Please describe your project.",
+      name: "description",
     },
   ])
   .then((response) =>
@@ -23,3 +44,10 @@ inquirer
       ? console.log("Success!")
       : console.log("You forgot your password already?!")
   );
+
+createReadme = () => {
+  fs.appendFile("newREADME.md", "Trial", function (err) {
+    if (err) throw err;
+    console.log("saved");
+  });
+};
