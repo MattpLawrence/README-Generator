@@ -48,7 +48,7 @@ inquirer
       type: "list",
       message: "Please choose a license.",
       name: "license",
-      choices: ["MIT", "Apache", "GPL"],
+      choices: ["MIT", "Apache", "GPL", "Dont Add License"],
     },
     {
       type: "input",
@@ -68,19 +68,24 @@ inquirer
 populateReadme = (response) => {
   console.log(response);
   const title = `# Project Title: ${response.title}\n\n`;
-  const description = `## Description: \n -${response.description}\n\n`;
+  const description = `## Description: \n ${response.description}\n\n`;
   const motivation = `### -Motivation: \n${response.motivation}\n`;
   const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n`;
   const problemSolved = `### -Problems Solved: \n${response.problemSolved}\n`;
   const learn = `### -What was Learned: \n${response.learn}\n\n`;
   const install = `## Installation Instructions: \n${response.install}\n\n`;
   const usage = `## How to Use: \n ${response.usage}\n\n`;
-  const license = `## License: \n ${response.license}\n\n`;
+  let license = `## License: \n ${response.license}\n\n`;
   const contribution = `## Contribution Guidelines: \n ${response.contribution}\n\n`;
   const test = `## How To Test: \n ${response.test}`;
-
+  //if dont add license is chosen, set to null length string
+  if (response.license === "Dont Add License") {
+    console.log("dont add license");
+    license = "";
+  }
+  //set string to add content to readme
   let fullPopulate = ``;
-
+  //loop through to add only the filled out answers to the readme
   if (response.title) {
     fullPopulate += title;
   }

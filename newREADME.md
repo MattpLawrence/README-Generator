@@ -1,38 +1,25 @@
 # Project Title: 1
 
-# Project Title: 1
+## Description: 
+ -1
 
-# Project Title: 1
+### -Motivation: 
+11
+### -Why This Was Built: 
+1
+### -Problems Solved: 
+1
+### -What was Learned: 
+1
 
-# Project Title: 1
-
-# Project Title: 1
-
-# Project Title: 1
-
-# Project Title: 1
-
-# Project Title: 1
-
-# Project Title: 1
-
-# Project Title: 1
-
-# Project Title: 1
-
-# Project Title: 1
-
-# Project Title: 1
-
-###-Motivation: 
-2
-###-Problems Solved: 
-3
 ## Installation Instructions: 
-4
+1
 
-## License: 
- MIT
+## How to Use: 
+ 1
+
+## Contribution Guidelines: 
+ 1
 
 ## How To Test: 
- 6
+ 1
