@@ -72,7 +72,7 @@ inquirer
 
 populateReadme = (response) => {
   console.log(response);
-  const title = `# Project Title: ${response.title}\n\n`;
+  const title = `# Project Title: ${response.title}\n`;
   const description = `## Description: \n ${response.description}\n\n`;
   const motivation = `### -Motivation: \n${response.motivation}\n`;
   const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n`;
@@ -82,8 +82,8 @@ populateReadme = (response) => {
   const usage = `## How to Use: \n ${response.usage}\n\n`;
   let license = `## License: \n ${response.license}\n\n`;
   const contribution = `## Contribution Guidelines: \n ${response.contribution}\n\n`;
-  const test = `## How To Test: \n ${response.test}`;
-  const username = `## Questions: \n For questions see more at: \n [${username}](https://github.com/${username})`;
+  const test = `## How To Test: \n ${response.test}\n\n`;
+  const username = `## Questions: \n For questions see more at: \n [${response.username}](https://github.com/${response.username})`;
   //if dont add license is chosen, set to null length string
   if (response.license === "Dont Add License") {
     console.log("dont add license");
@@ -93,15 +93,15 @@ populateReadme = (response) => {
   let setBadge = () => {
     if (response.license === "MIT") {
       fullPopulate +=
-        "![MIT-Tag](https://shields.io/badge/license-MIT-green) \n";
+        "![MIT-Tag](https://shields.io/badge/license-MIT-green) \n\n";
     }
     if (response.license === "Apache") {
       fullPopulate +=
-        "![Apache-Tag](https://shields.io/badge/license-Apache-blue) \n";
+        "![Apache-Tag](https://shields.io/badge/license-Apache-blue) \n\n";
     }
     if (response.license === "GPL") {
       fullPopulate +=
-        "![GPL-Tag](https://shields.io/badge/license-GPL-blue) \n";
+        "![GPL-Tag](https://shields.io/badge/license-GPL-blue) \n\n";
     }
   };
 
@@ -142,6 +142,9 @@ populateReadme = (response) => {
   }
   if (response.test) {
     fullPopulate += test;
+  }
+  if (response.test) {
+    fullPopulate += username;
   }
 
   //loop to check if everything was entered, and exclude blank entries.
