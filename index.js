@@ -16,33 +16,48 @@ inquirer
       type: "input",
       message:
         "How do I install this project? (Enter installation instructions)",
-      name: "installInstructions",
+      name: "install",
     },
     {
       type: "input",
       message: "How do I use this project? (Enter usage instructions)",
-      name: "usageInstructions",
+      name: "usage",
     },
     {
       type: "list",
       message: "Please choose a license.",
       name: "license",
+      choices: ["MIT", "Apache", "GPL"],
     },
     {
       type: "input",
       message: "What are the contribution guidelines?",
-      name: "description",
+      name: "contribution",
     },
     {
       type: "input",
       message: "What are the test instructions?",
-      name: "description",
+      name: "test",
     },
   ])
-  .then((response) => console.log(response));
+  .then((response) => {
+    populateReadme(response);
+  });
 
-createReadme = () => {
-  fs.appendFile("newREADME.md", "Trial", function (err) {
+populateReadme = (response) => {
+  console.log(response);
+  console.log(response.test);
+  const title = `# Project Title: ${response.title}`;
+  const description = `## Description: \n -${response.description} `;
+  const install = `## Installation Instructions: ${response.install}`;
+  const
+
+  let fullPopulate = `${title} \n\n ${description}`;
+  createReadme(fullPopulate);
+};
+
+createReadme = (fullPopulate) => {
+  fs.appendFile("newREADME.md", fullPopulate, function (err) {
     if (err) throw err;
     console.log("saved");
   });
