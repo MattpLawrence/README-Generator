@@ -80,16 +80,17 @@ populateReadme = (response) => {
   const title = `# Project Title: ${response.title}\n`;
   const description = `## Description: \n ${response.description}\n\n`;
   let tblContent = `\n\n## Table of Contents:\n`;
-  const motivation = `### -Motivation: <a name="motivation"></a> \n${response.motivation}\n`;
+  const motivation = `### -Motivation: \n${response.motivation}\n`;
   const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n`;
   const problemSolved = `### -Problems Solved: \n${response.problemSolved}\n`;
   const learn = `### -What was Learned: \n${response.learn}\n\n`;
-  const install = `## Installation Instructions: \n${response.install}\n\n`;
-  const usage = `## How to Use: \n ${response.usage}\n\n`;
-  let license = `## License: \n -This project is covered under the ${response.license} license.\n\n`;
-  const contribution = `## Contribution Guidelines: \n ${response.contribution}\n\n`;
-  const test = `## How To Test: \n ${response.test}\n\n`;
-  const username = `## Questions: \n For questions see more at: \n [${response.username}](https://github.com/${response.username})\n\n`;
+  const install = `## Installation Instructions: <a name="install"></a> \n${response.install}\n\n`;
+  const usage = `## How to Use: <a name="usage"></a> \n ${response.usage}\n\n`;
+  let license = `## License: <a name="license"></a> \n -This project is covered under the ${response.license} license.\n\n`;
+  const contribution = `## Contribution Guidelines: <a name="contribution"></a> \n ${response.contribution}\n\n`;
+  const test = `## How To Test: <a name="test"></a> \n ${response.test}\n\n`;
+  let questions = `## Questions: <a name="username"></a> \n`;
+  const username = `For questions see more at: \n [${response.username}](https://github.com/${response.username})\n\n`;
   const email = `Or email me at: ${response.email}`;
   //if dont add license is chosen, set to null length string
   if (response.license === "Dont Add License") {
@@ -112,6 +113,16 @@ populateReadme = (response) => {
     }
   };
 
+  let setQuestions = () => {
+    if (!response.username && !response.email) {
+      questions = ``;
+    } else if (response.username) {
+      questions += `${username}`;
+    } else {
+      questions += `${email}`;
+    }
+  };
+  setQuestions();
   //set string to add content to readme
   let fullPopulate = ``;
   //loop through to add only the filled out answers to the readme
@@ -125,9 +136,6 @@ populateReadme = (response) => {
   }
   if (response.motivation) {
     fullPopulate += motivation;
-    tblContent += `${i}. [title](#motivation) \n`;
-    console.log(tblContent);
-    i++;
   }
   if (response.whyBuild) {
     fullPopulate += whyBuild;
@@ -140,27 +148,35 @@ populateReadme = (response) => {
   }
   if (response.install) {
     fullPopulate += install;
+    tblContent += `${i}. [Installation](#install) \n`;
+    i++;
   }
   if (response.usage) {
     fullPopulate += usage;
+    tblContent += `${i}. [Usage](#usage) \n`;
+    i++;
   }
   if (response.license) {
     fullPopulate += license;
+    tblContent += `${i}. [License](#license) \n`;
+    i++;
   }
   if (response.contribution) {
     fullPopulate += contribution;
+    tblContent += `${i}. [Contribution](#contribution) \n`;
+    i++;
   }
   if (response.test) {
     fullPopulate += test;
+    tblContent += `${i}. [Test](#test) \n`;
+    i++;
   }
-  if (response.username) {
-    fullPopulate += username;
+  if (questions) {
+    fullPopulate += questions;
   }
-  if (response.email) {
-    fullPopulate += email;
+  if (tblContent) {
+    fullPopulate += tblContent;
   }
-  console.log(tblContent);
-  fullPopulate += tblContent;
   //loop to check if everything was entered, and exclude blank entries.
   // let fullPopulate = ``;
   // let attrList = [];

@@ -4,30 +4,39 @@
 ## Description: 
  1
 
-### -Motivation: <a name="motivation"></a> 
+### -Motivation: 
 1
 ### -Why This Was Built: 
 1
+### -Problems Solved: 
+1
 ### -What was Learned: 
-11
+1
 
-## How to Use: 
+## Installation Instructions: <a name="install"></a> 
+1
+
+## How to Use: <a name="usage"></a> 
  1
 
-## License: 
+## License: <a name="license"></a> 
  -This project is covered under the MIT license.
 
-## Contribution Guidelines: 
+## Contribution Guidelines: <a name="contribution"></a> 
  1
 
-## How To Test: 
+## How To Test: <a name="test"></a> 
  1
 
-## Questions: 
- For questions see more at: 
+## Questions: <a name="username"></a> 
+For questions see more at: 
  [1](https://github.com/1)
 
-Or email me at: 1
+
 
 ## Table of Contents:
-1. [title](#motivation) 
+1. [Installation](#install) 
+2. [Usage](#usage) 
+3. [License](#license) 
+4. [Contribution](#contribution) 
+5. [Test](#test) 
