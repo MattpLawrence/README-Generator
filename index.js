@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const { forEach } = require("lodash");
 inquirer
   .prompt([
     {
@@ -78,6 +79,14 @@ populateReadme = (response) => {
   const license = `## License: \n ${response.license}`;
   const contribution = `## Contribution Guidelines: \n ${response.contribution}`;
   const test = `## How To Test: \n ${response.test}`;
+
+  //loop to check if everything was entered, and exclude blank entries.
+  for (let property in response) {
+    console.log(response[property]);
+    if (response[property]) {
+      console.log("yes" + response[property]);
+    }
+  }
 
   let fullPopulate = `${title}\n\n${description}\n\n${motivation}\n${whyBuild}\n${problemSolved}\n${learn}\n\n${install}\n\n${usage}\n\n${license}\n\n${contribution} \n\n${test}`;
   createReadme(fullPopulate);
