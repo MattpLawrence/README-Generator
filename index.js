@@ -116,17 +116,44 @@ populateReadme = (response) => {
   let setQuestions = () => {
     if (!response.username && !response.email) {
       questions = ``;
-    } else if (response.username) {
+    }
+    if (response.username) {
       questions += `${username}`;
-    } else {
+    }
+    if (response.email) {
       questions += `${email}`;
     }
   };
   setQuestions();
+  let i = 1;
+  let setTblContents = () => {
+    if (response.install) {
+      tblContent += `${i}. [Installation](#install) \n`;
+      i++;
+    }
+    if (response.usage) {
+      tblContent += `${i}. [Usage](#usage) \n`;
+      i++;
+    }
+    if (response.license) {
+      tblContent += `${i}. [License](#license) \n`;
+      i++;
+    }
+    if (response.contribution) {
+      tblContent += `${i}. [Contribution](#contribution) \n`;
+      i++;
+    }
+    if (response.test) {
+      tblContent += `${i}. [Test](#test) \n`;
+      i++;
+    }
+  };
+  setTblContents();
+
   //set string to add content to readme
   let fullPopulate = ``;
   //loop through to add only the filled out answers to the readme
-  let i = 1;
+
   if (response.title) {
     fullPopulate += title;
   }
@@ -146,37 +173,28 @@ populateReadme = (response) => {
   if (response.learn) {
     fullPopulate += learn;
   }
+  if (tblContent) {
+    fullPopulate += tblContent;
+  }
   if (response.install) {
     fullPopulate += install;
-    tblContent += `${i}. [Installation](#install) \n`;
-    i++;
   }
   if (response.usage) {
     fullPopulate += usage;
-    tblContent += `${i}. [Usage](#usage) \n`;
-    i++;
   }
   if (response.license) {
     fullPopulate += license;
-    tblContent += `${i}. [License](#license) \n`;
-    i++;
   }
   if (response.contribution) {
     fullPopulate += contribution;
-    tblContent += `${i}. [Contribution](#contribution) \n`;
-    i++;
   }
   if (response.test) {
     fullPopulate += test;
-    tblContent += `${i}. [Test](#test) \n`;
-    i++;
   }
   if (questions) {
     fullPopulate += questions;
   }
-  if (tblContent) {
-    fullPopulate += tblContent;
-  }
+
   //loop to check if everything was entered, and exclude blank entries.
   // let fullPopulate = ``;
   // let attrList = [];
