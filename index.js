@@ -195,15 +195,25 @@ populateReadme = (response) => {
     fullPopulate += questions;
   }
 
+  const build = {
+    ...(response.title && { title: `my text ${response.title}` }),
+  };
+
+  const myString = Object.keys(build)
+    .map((key) => build[key])
+    .join(``);
+
+  console.log(myString);
+
   //loop to check if everything was entered, and exclude blank entries.
   // let fullPopulate = ``;
   // let attrList = [];
-  // for (let property in response) {
-  //   if (response[property]) {
-  //     attrList.push(property);
-  //     console.log(attrList);
+  let newString = ``;
+  for (let key in build) {
+    newString += build[key];
+  }
 
-  //   }
+  console.log(newString + "newString");
   // }
   // //set array to loop through
   // const fullAttrList = [
@@ -228,6 +238,7 @@ populateReadme = (response) => {
 
   // let fullPopulate = `${title}\n\n${description}\n\n${motivation}\n${whyBuild}\n${problemSolved}\n${learn}\n\n${install}\n\n${usage}\n\n${license}\n\n${contribution} \n\n${test}`;
   createReadme(fullPopulate);
+  console.log(fullPopulate + "fullpop");
 };
 
 createReadme = (fullPopulate) => {
