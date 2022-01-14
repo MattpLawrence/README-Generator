@@ -29,6 +29,7 @@ I learned how to use NPM to install and use a new package called inquirer. Addit
 3. [License](#license)
 4. [Contribution](#contribution)
 5. [Test](#test)
+6. [Video](#video)
 
 ## Installation Instructions: <a name="install"></a>
 
@@ -50,13 +51,13 @@ To contribute to this project simply clone the repository and make changes as yo
 
 To test the application try to leave out certain fields to see if the returned file is still formatted correctly.
 
+## Video Walk Through: <a name="video"></a>
+
+[Video](/video/README-Walkthrough.md)
+
 ## Questions: <a name="username"></a>
 
 For questions see more at:
 [Mattplawrence](https://github.com/MattpLawrence)
 
 Or email me at: MattPhLawrence@gmail.com
-
-## Video Walk THrough:
-
-[Video](/video/README-Walkthrough.md)
