@@ -58,6 +58,6 @@ To test the application try to leave out certain fields to see if the returned f
 ## Questions: <a name="username"></a>
 
 For questions see more at:
-[Mattplawrence](https://github.com/MattpLawrence)
+[Mattplawrence](https://watch.screencastify.com/v/SZlbJ2DFqgP2nNV3PvW6)
 
 Or email me at: MattPhLawrence@gmail.com
