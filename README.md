@@ -53,11 +53,11 @@ To test the application try to leave out certain fields to see if the returned f
 
 ## Video Walk Through: <a name="video"></a>
 
-[Video](/video/README-Walkthrough.md)
+[Video](https://watch.screencastify.com/v/SZlbJ2DFqgP2nNV3PvW6)
 
 ## Questions: <a name="username"></a>
 
 For questions see more at:
-[Mattplawrence](https://watch.screencastify.com/v/SZlbJ2DFqgP2nNV3PvW6)
+[Mattplawrence](https://github.com/MattpLawrence)
 
 Or email me at: MattPhLawrence@gmail.com
