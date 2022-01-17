@@ -46,12 +46,6 @@ inquirer
     },
     {
       type: "list",
-      message: "Would You Like to display License Badges?",
-      name: "setBadge",
-      choices: ["Yes", "No"],
-    },
-    {
-      type: "list",
       message: "Please choose a license.",
       name: "license",
       choices: ["MIT", "Apache", "GPL", "Dont Add License"],
@@ -83,21 +77,11 @@ inquirer
 
 populateReadme = (response) => {
   console.log(response);
-  const title = `# Project Title: ${response.title}\n`;
-  const description = `## Description: \n${response.description}\n\n`;
-  let tblContent = `\n\n## Table of Contents:\n`;
-  const motivation = `### -Motivation: \n${response.motivation}\n\n`;
-  const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n\n`;
-  const problemSolved = `### -Problems Solved: \n${response.problemSolved}\n\n`;
-  const learn = `### -What was Learned: \n${response.learn}\n\n`;
-  const install = `## Installation Instructions: <a name="install"></a> \n${response.install}\n\n`;
-  const usage = `## How to Use: <a name="usage"></a> \n ${response.usage}\n\n`;
-  let license = `## License: <a name="license"></a> \n -This project is covered under the ${response.license} license.\n\n`;
-  const contribution = `## Contribution Guidelines: <a name="contribution"></a> \n ${response.contribution}\n\n`;
-  const test = `## How To Test: <a name="test"></a> \n ${response.test}\n\n`;
+  let tblContent = `## Table of Contents:\n`;
+  let license = ` ${response.license} `;
   let questions = `## Questions: <a name="username"></a> \n\n`;
-  const username = `For questions see more at: \n [${response.username}](https://github.com/${response.username})\n\n`;
-  const email = `Or email me at: ${response.email}`;
+  const username = `${response.username}`;
+  const email = `${response.email}`;
   //if dont add license is chosen, set to null length string
   if (response.license === "Dont Add License") {
     console.log("dont add license");
@@ -134,6 +118,7 @@ populateReadme = (response) => {
     }
   };
   setQuestions();
+  //Look for answers, and set table oc contents.
   let i = 1;
   let setTblContents = () => {
     if (response.install) {
@@ -158,68 +143,7 @@ populateReadme = (response) => {
     }
   };
   setTblContents();
-
-  //set string to add content to readme
-
-  //loop through to add only the filled out answers to the readme
-
-  // if (response.title) {
-  //   fullPopulate += title;
-  // }
-  // setBadge();
-  // if (response.description) {
-  //   fullPopulate += description;
-  // }
-  // if (response.motivation) {
-  //   fullPopulate += motivation;
-  // }
-  // if (response.whyBuild) {
-  //   fullPopulate += whyBuild;
-  // }
-  // if (response.problemSolved) {
-  //   fullPopulate += problemSolved;
-  // }
-  // if (response.learn) {
-  //   fullPopulate += learn;
-  // }
-  // if (tblContent) {
-  //   fullPopulate += tblContent;
-  // }
-  // if (response.install) {
-  //   fullPopulate += install;
-  // }
-  // if (response.usage) {
-  //   fullPopulate += usage;
-  // }
-  // if (response.license) {
-  //   fullPopulate += license;
-  // }
-  // if (response.contribution) {
-  //   fullPopulate += contribution;
-  // }
-  // if (response.test) {
-  //   fullPopulate += test;
-  // }
-  // if (questions) {
-  //   fullPopulate += questions;
-  // }
-
-  // const title = `# Project Title: ${response.title}\n`;
-  // const description = `## Description: \n${response.description}\n\n`;
-  // let tblContent = `\n\n## Table of Contents:\n`;
-  // const motivation = `### -Motivation: \n${response.motivation}\n\n`;
-  // const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n\n`;
-  // const problemSolved = `### -Problems Solved: \n${response.problemSolved}\n\n`;
-  // const learn = `### -What was Learned: \n${response.learn}\n\n`;
-  // const install = `## Installation Instructions: <a name="install"></a> \n${response.install}\n\n`;
-  // const usage = `## How to Use: <a name="usage"></a> \n ${response.usage}\n\n`;
-  // let license = `## License: <a name="license"></a> \n -This project is covered under the ${response.license} license.\n\n`;
-  // const contribution = `## Contribution Guidelines: <a name="contribution"></a> \n ${response.contribution}\n\n`;
-  // const test = `## How To Test: <a name="test"></a> \n ${response.test}\n\n`;
-  // let questions = `## Questions: <a name="username"></a> \n\n`;
-  // const username = `For questions see more at: \n [${response.username}](https://github.com/${response.username})\n\n`;
-  // const email = `Or email me at: ${response.email}`;
-
+  //check for each attribute, and set to new value with text.
   const build = {
     ...(response.title && { title: `# Project Title: ${response.title}\n` }),
     ...(response.license && { setBadge: `${fullPopulate}` }),
@@ -240,7 +164,7 @@ populateReadme = (response) => {
     }),
     ...(tblContent && { tblContent: `${tblContent}` }),
     ...(response.install && {
-      install: `## Installation Instructions: <a name="install"></a> \n${response.install}\n\n`,
+      install: `\n## Installation Instructions: <a name="install"></a> \n${response.install}\n\n`,
     }),
     ...(response.usage && {
       usage: `## How to Use: <a name="usage"></a> \n ${response.usage}\n\n`,
@@ -260,22 +184,14 @@ populateReadme = (response) => {
     ...(response.email && { email: `Or email me at: ${response.email}` }),
   };
 
-  console.log("tble" + tblContent);
-  const myString = Object.keys(build)
-    .map((key) => build[key])
-    .join(``);
-
-  console.log(myString);
-
+  // build string out of the keys of the build
   let newString = ``;
   for (let key in build) {
     newString += build[key];
   }
 
   console.log(newString + "newString");
-
   createReadme(newString);
-  // console.log(fullPopulate + "fullpop");
 };
 
 createReadme = (newString) => {
