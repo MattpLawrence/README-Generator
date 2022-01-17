@@ -77,27 +77,19 @@ inquirer
 
 populateReadme = (response) => {
   console.log(response);
-  const title = `# Project Title: ${response.title}\n`;
-  const description = `## Description: \n${response.description}\n\n`;
-  let tblContent = `\n\n## Table of Contents:\n`;
-  const motivation = `### -Motivation: \n${response.motivation}\n\n`;
-  const whyBuild = `### -Why This Was Built: \n${response.whyBuild}\n\n`;
-  const problemSolved = `### -Problems Solved: \n${response.problemSolved}\n\n`;
-  const learn = `### -What was Learned: \n${response.learn}\n\n`;
-  const install = `## Installation Instructions: <a name="install"></a> \n${response.install}\n\n`;
-  const usage = `## How to Use: <a name="usage"></a> \n ${response.usage}\n\n`;
-  let license = `## License: <a name="license"></a> \n -This project is covered under the ${response.license} license.\n\n`;
-  const contribution = `## Contribution Guidelines: <a name="contribution"></a> \n ${response.contribution}\n\n`;
-  const test = `## How To Test: <a name="test"></a> \n ${response.test}\n\n`;
+  let tblContent = `## Table of Contents:\n`;
+  let license = ` ${response.license} `;
   let questions = `## Questions: <a name="username"></a> \n\n`;
-  const username = `For questions see more at: \n [${response.username}](https://github.com/${response.username})\n\n`;
-  const email = `Or email me at: ${response.email}`;
+  const username = `${response.username}`;
+  const email = `${response.email}`;
   //if dont add license is chosen, set to null length string
   if (response.license === "Dont Add License") {
     console.log("dont add license");
     license = "";
   }
   //check to see what license was chosen, then add badge
+  let fullPopulate = ``;
+
   let setBadge = () => {
     if (response.license === "MIT") {
       fullPopulate +=
@@ -112,6 +104,7 @@ populateReadme = (response) => {
         "![GPL-Tag](https://shields.io/badge/license-GPL-blue) \n\n";
     }
   };
+  setBadge();
 
   let setQuestions = () => {
     if (!response.username && !response.email) {
@@ -125,6 +118,7 @@ populateReadme = (response) => {
     }
   };
   setQuestions();
+  //Look for answers, and set table oc contents.
   let i = 1;
   let setTblContents = () => {
     if (response.install) {
@@ -149,100 +143,59 @@ populateReadme = (response) => {
     }
   };
   setTblContents();
-
-  //set string to add content to readme
-  let fullPopulate = ``;
-  //loop through to add only the filled out answers to the readme
-
-  if (response.title) {
-    fullPopulate += title;
-  }
-  setBadge();
-  if (response.description) {
-    fullPopulate += description;
-  }
-  if (response.motivation) {
-    fullPopulate += motivation;
-  }
-  if (response.whyBuild) {
-    fullPopulate += whyBuild;
-  }
-  if (response.problemSolved) {
-    fullPopulate += problemSolved;
-  }
-  if (response.learn) {
-    fullPopulate += learn;
-  }
-  if (tblContent) {
-    fullPopulate += tblContent;
-  }
-  if (response.install) {
-    fullPopulate += install;
-  }
-  if (response.usage) {
-    fullPopulate += usage;
-  }
-  if (response.license) {
-    fullPopulate += license;
-  }
-  if (response.contribution) {
-    fullPopulate += contribution;
-  }
-  if (response.test) {
-    fullPopulate += test;
-  }
-  if (questions) {
-    fullPopulate += questions;
-  }
-
+  //check for each attribute, and set to new value with text.
   const build = {
-    ...(response.title && { title: `my text ${response.title}` }),
+    ...(response.title && { title: `# Project Title: ${response.title}\n` }),
+    ...(response.license && { setBadge: `${fullPopulate}` }),
+    ...(response.description && {
+      description: `## Description: \n${response.description}\n\n`,
+    }),
+    ...(response.motivation && {
+      motivation: `### -Motivation: \n${response.motivation}\n\n`,
+    }),
+    ...(response.whyBuild && {
+      whyBuild: `### -Why This Was Built: \n${response.whyBuild}\n\n`,
+    }),
+    ...(response.problemSolved && {
+      problemSolved: `### -Problems Solved: \n${response.problemSolved}\n\n`,
+    }),
+    ...(response.learn && {
+      learn: `### -What was Learned: \n${response.learn}\n\n`,
+    }),
+    ...(tblContent && { tblContent: `${tblContent}` }),
+    ...(response.install && {
+      install: `\n## Installation Instructions: <a name="install"></a> \n${response.install}\n\n`,
+    }),
+    ...(response.usage && {
+      usage: `## How to Use: <a name="usage"></a> \n ${response.usage}\n\n`,
+    }),
+    ...(response.license && {
+      license: `## License: <a name="license"></a> \n -This project is covered under the ${response.license} license.\n\n`,
+    }),
+    ...(response.contribution && {
+      contribution: `## Contribution Guidelines: <a name="contribution"></a> \n ${response.contribution}\n\n`,
+    }),
+    ...(response.test && {
+      test: `## How To Test: <a name="test"></a> \n ${response.test}\n\n`,
+    }),
+    ...(response.username && {
+      username: `For questions see more at: \n [${response.username}](https://github.com/${response.username})\n\n`,
+    }),
+    ...(response.email && { email: `Or email me at: ${response.email}` }),
   };
 
-  const myString = Object.keys(build)
-    .map((key) => build[key])
-    .join(``);
-
-  console.log(myString);
-
-  //loop to check if everything was entered, and exclude blank entries.
-  // let fullPopulate = ``;
-  // let attrList = [];
+  // build string out of the keys of the build
   let newString = ``;
   for (let key in build) {
     newString += build[key];
   }
 
   console.log(newString + "newString");
-  // }
-  // //set array to loop through
-  // const fullAttrList = [
-  //   title,
-  //   description,
-  //   motivation,
-  //   whyBuild,
-  //   problemSolved,
-  //   learn,
-  //   install,
-  //   usage,
-  //   license,
-  //   contribution,
-  //   test,
-  // ];
-  // for (let i = 0; i < fullAttrList.length; i++) {
-  //   console.log(fullAttrList[i]);
-  //   if (attrList.includes(fullAttrList[i])) {
-  //     console.log("includes" + fullAttrList[i]);
-  //   }
-  // }
-
-  // let fullPopulate = `${title}\n\n${description}\n\n${motivation}\n${whyBuild}\n${problemSolved}\n${learn}\n\n${install}\n\n${usage}\n\n${license}\n\n${contribution} \n\n${test}`;
-  createReadme(fullPopulate);
-  console.log(fullPopulate + "fullpop");
+  createReadme(newString);
 };
 
-createReadme = (fullPopulate) => {
-  fs.appendFile("newREADME.md", fullPopulate, function (err) {
+createReadme = (newString) => {
+  fs.appendFile("newREADME.md", newString, function (err) {
     if (err) throw err;
     console.log("Saved");
   });
